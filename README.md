@@ -1,7 +1,7 @@
 # ssm-session-manager-bot
 
 This project contains source code and supporting files for a SSM session manager bot. 
-This project will configure a slack bot that
+This project will configure a slack bot that:
 * Alerts when a StartSession command is invoked on a EC2
 * Provides a endpoint to Revoke a session based on id
 
@@ -58,7 +58,7 @@ The slack channel should receive a message
 ```bash
 StartSession in Account: XXXXXXXXXXX
 Session: test-user-076873a6149f50448 started by User: test-user
-on Instance: i-023ad911b5d49dece
+on Instance: i-0231234abcdefghij
 ```
 
 Use the /revoke command and specify Session ID
