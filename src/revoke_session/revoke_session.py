@@ -15,31 +15,37 @@ def lambda_handler(event, context):
     logger.info(f"EVENT: {event}")
     session = boto3.session.Session()
     
+    #Grab values from query string in event
     query_string = parse_qs(event['body'])
     logger.debug(f"QUERY_STRING: {query_string}")
 
+    #Retrieve values from query_string
     session_id = ''.join(query_string['text']).replace('*','')
     user_name = ''.join(query_string['user_name'])
     logger.debug(f"SESSION_ID: {session_id}, USER_NAME: {user_name}")
 
+    #Get a list of active SSM sessions 
     ssm = session.client('ssm')
     ssm_sessions = helpers.list_active_sessions(session)
     
+    #If the session passed in from the event is active
     if(session_id in ssm_sessions):
+        #revoke session
         terminate_resonse = ssm.terminate_session(SessionId=session_id)
         result = terminate_resonse['SessionId']
         logger.debug(f"TERMINATED_SESSION: {result}")
         
-        #Message back to channel
+        #Format for slack message
         slack_message = {
             'text' : f'<@{user_name}> revoked Session: *{result}*\n'
         }
 
+        #Get Webhook URL from ssm param
         webhook_url = ssm.get_parameter(Name=WEBHOOK_PARAM, WithDecryption=True)['Parameter']['Value']
         logger.debug(f"WEBHOOK_URL: {webhook_url}")
 
+        #Send slack message to webhook, to post message to channel
         req = Request(webhook_url,json.dumps(slack_message).encode('utf-8'))
-    
         try:
             response = urlopen(req)
             response.read()
@@ -53,7 +59,7 @@ def lambda_handler(event, context):
     else:
         body_text = f"Session: *{session_id}* is currently not active"
     
-    #Message back to user
+    #Send message back to caller
     message = dict(statusCode=200,
                  isBase64Encoded=False,
                  headers={"Content-Type": "application/json"},

@@ -14,7 +14,7 @@ def lambda_handler(event,context):
     logger.info(f"EVENT: {event}")
     session = boto3.session.Session()
 
-    #Retreive values from event
+    #Retrieve values from event
     eventName = event['detail']['eventName']
     accountId = event['detail']['userIdentity']['accountId']
     userName = event['detail']['userIdentity']['sessionContext']['sessionIssuer']['userName']
@@ -22,7 +22,7 @@ def lambda_handler(event,context):
     sessionId = event['detail']['responseElements']['sessionId']
     logger.debug(f"VALUES FROM EVENT: eventName: {eventName}, accountId: {accountId}, userName: {userName}, sessionId: {sessionId} ")
     
-    #Create format for slack message
+    #Format for slack message
     slack_message = {
         'text' : f'*{eventName}* in Account: *{accountId}*\n'
                  f'Session: *{sessionId}* started by User: *{userName}*\n'
@@ -30,12 +30,13 @@ def lambda_handler(event,context):
     }
     logger.debug(f"SLACK_MESSAGE: {slack_message}")
     
+    #Get Webhook URL from ssm param
     ssm = session.client('ssm')
     webhook_url = ssm.get_parameter(Name=WEBHOOK_PARAM, WithDecryption=True)['Parameter']['Value']
     logger.debug(f"WEBHOOK_URL: {webhook_url}")
 
+    #Send slack message to webhook, to post message to channel
     req = Request(webhook_url, json.dumps(slack_message).encode('utf-8'))
-
     try:
         response = urlopen(req)
         response.read()
