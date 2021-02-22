@@ -17,7 +17,14 @@ def lambda_handler(event,context):
     #Retrieve values from event
     eventName = event['detail']['eventName']
     accountId = event['detail']['userIdentity']['accountId']
-    userName = event['detail']['userIdentity']['sessionContext']['sessionIssuer']['userName']
+    
+    userIdentityType = event['detail']['userIdentity']['type']
+    
+    if userIdentityType == 'AssumedRole':
+        userName = event['detail']['userIdentity']['sessionContext']['sessionIssuer']['userName']
+    elif userIdentityType == 'IAMUser':
+        userName = event['detail']['userIdentity']['userName']
+
     target = event['detail']['requestParameters']['target']
     sessionId = event['detail']['responseElements']['sessionId']
     logger.debug(f"VALUES FROM EVENT: eventName: {eventName}, accountId: {accountId}, userName: {userName}, sessionId: {sessionId} ")
