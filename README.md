@@ -91,3 +91,9 @@ To delete the ssm-manager-bot created, delete the stack from console or use aws 
 ```bash
 aws cloudformation delete-stack --stack-name ssm-slackbot
 ```
+
+## Future Improvements (Work in Progress)
+* Switch to OAuth tokens
+* Add auth to API gateway endpoint
+* Switch to use Python Bolt framework for slack bots
+* Multi-Account Support
