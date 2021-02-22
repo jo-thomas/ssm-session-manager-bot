@@ -22,6 +22,7 @@ Globals:
 
 Resources:
 
+  #Create a lambda function and api gateway POST endpoint for revoke
   RevokeSessionLambda:
     Type: AWS::Serverless::Function
     Properties:
@@ -61,7 +62,8 @@ Resources:
               Action:
                 - ssm:TerminateSession
                 - ssm:DescribeSessions
-               
+  
+  #Create a lambda function that will alert slack based on EventBridge event
   AlertSlackFunction:
     Type: AWS::Serverless::Function
     Properties:
@@ -90,6 +92,7 @@ Resources:
                 - ssm:GetParameters
                 - ssm:GetParametersByPath
   
+  #Create a EventBridge rule to watch for StartSession call in CloudTrail
   StartSessionRule:           
     Type: AWS::Events::Rule
     Properties: 
@@ -101,6 +104,7 @@ Resources:
         - Id: 'LambdaTarget'
           Arn: !GetAtt AlertSlackFunction.Arn
   
+  #Give permissions for EventBridge rule to trigger alert lambda
   PermissionForEventsToInvokeLambda: 
     Type: AWS::Lambda::Permission
     Properties: 
