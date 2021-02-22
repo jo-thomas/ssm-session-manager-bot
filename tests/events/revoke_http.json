@@ -1,0 +1,121 @@
+{
+    "resource": "/revoke",
+    "path": "/revoke",
+    "httpMethod": "POST",
+    "headers": {
+        "Accept": "application/json,*/*",
+        "Accept-Encoding": "gzip,deflate",
+        "CloudFront-Forwarded-Proto": "https",
+        "CloudFront-Is-Desktop-Viewer": "true",
+        "CloudFront-Is-Mobile-Viewer": "false",
+        "CloudFront-Is-SmartTV-Viewer": "false",
+        "CloudFront-Is-Tablet-Viewer": "false",
+        "CloudFront-Viewer-Country": "US",
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Host": "gepknvj80g.execute-api.us-east-1.amazonaws.com",
+        "User-Agent": "Slackbot 1.0 (+https://api.slack.com/robots)",
+        "Via": "1.1 c396de17c1b5d58233088e40dd170cf5.cloudfront.net (CloudFront)",
+        "X-Amz-Cf-Id": "ijLNyg2sNUehzaUFaaq7Z2jtxuTlUJiXRRSgio7e1gAi6JfahxT9sQ==",
+        "X-Amzn-Trace-Id": "Root=1-60164c56-2de53e7a0a20a9e14b2e0e9f",
+        "X-Forwarded-For": "34.232.63.141, 130.176.133.151",
+        "X-Forwarded-Port": "443",
+        "X-Forwarded-Proto": "https",
+        "X-Slack-Request-Timestamp": "1612074070",
+        "X-Slack-Signature": "v0=506cccdfc190e4f4e523f3dd829c7593b98335c621af60c1ff67aefd6908b86f"
+    },
+    "multiValueHeaders": {
+        "Accept": [
+            "application/json,*/*"
+        ],
+        "Accept-Encoding": [
+            "gzip,deflate"
+        ],
+        "CloudFront-Forwarded-Proto": [
+            "https"
+        ],
+        "CloudFront-Is-Desktop-Viewer": [
+            "true"
+        ],
+        "CloudFront-Is-Mobile-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-SmartTV-Viewer": [
+            "false"
+        ],
+        "CloudFront-Is-Tablet-Viewer": [
+            "false"
+        ],
+        "CloudFront-Viewer-Country": [
+            "US"
+        ],
+        "Content-Type": [
+            "application/x-www-form-urlencoded"
+        ],
+        "Host": [
+            "gepknvj80g.execute-api.us-east-1.amazonaws.com"
+        ],
+        "User-Agent": [
+            "Slackbot 1.0 (+https://api.slack.com/robots)"
+        ],
+        "Via": [
+            "1.1 c396de17c1b5d58233088e40dd170cf5.cloudfront.net (CloudFront)"
+        ],
+        "X-Amz-Cf-Id": [
+            "ijLNyg2sNUehzaUFaaq7Z2jtxuTlUJiXRRSgio7e1gAi6JfahxT9sQ=="
+        ],
+        "X-Amzn-Trace-Id": [
+            "Root=1-60164c56-2de53e7a0a20a9e14b2e0e9f"
+        ],
+        "X-Forwarded-For": [
+            "34.232.63.141, 130.176.133.151"
+        ],
+        "X-Forwarded-Port": [
+            "443"
+        ],
+        "X-Forwarded-Proto": [
+            "https"
+        ],
+        "X-Slack-Request-Timestamp": [
+            "1612074070"
+        ],
+        "X-Slack-Signature": [
+            "v0=506cccdfc190e4f4e523f3dd829c7593b98335c621af60c1ff67aefd6908b86f"
+        ]
+    },
+    "queryStringParameters": "None",
+    "multiValueQueryStringParameters": "None",
+    "pathParameters": "None",
+    "stageVariables": "None",
+    "requestContext": {
+        "resourceId": "ha6q28",
+        "resourcePath": "/revoke",
+        "httpMethod": "POST",
+        "extendedRequestId": "aADdiE4vIAMFlJw=",
+        "requestTime": "31/Jan/2021:06:21:10 +0000",
+        "path": "/Prod/revoke",
+        "accountId": "459850734427",
+        "protocol": "HTTP/1.1",
+        "stage": "Prod",
+        "domainPrefix": "gepknvj80g",
+        "requestTimeEpoch": 1612074070591,
+        "requestId": "963310f0-4a79-40b1-a420-f531f6d597bf",
+        "identity": {
+            "cognitoIdentityPoolId": "None",
+            "accountId": "None",
+            "cognitoIdentityId": "None",
+            "caller": "None",
+            "sourceIp": "34.232.63.141",
+            "principalOrgId": "None",
+            "accessKey": "None",
+            "cognitoAuthenticationType": "None",
+            "cognitoAuthenticationProvider": "None",
+            "userArn": "None",
+            "userAgent": "Slackbot 1.0 (+https://api.slack.com/robots)",
+            "user": "None"
+        },
+        "domainName": "gepknvj80g.execute-api.us-east-1.amazonaws.com",
+        "apiId": "gepknvj80g"
+    },
+    "body": "token=1pHGkEVLZHecqtFODz7XG1XR&team_id=T01LL40M42Y&team_domain=thomas-workspacehq&channel_id=G01LAS5F405&channel_name=privategroup&user_id=U01LSHN8MJ5&user_name=thomasjoji91&command=%2Frevoke&text=test&api_app_id=A01LDUW3L02&is_enterprise_install=false&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT01LL40M42Y%2F1692376746133%2FztydsYP4DEUn0fahPyGOXPcB&trigger_id=1719305728704.1700136718100.b36aeb6d751d157cd766e078384cc051",
+    "isBase64Encoded": "False"
+}

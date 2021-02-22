@@ -1,0 +1,121 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  ssm-session-manager-bot
+
+Parameters:
+
+  SlackWebhookUrlParam:
+    Type: String
+    Default: /slack-bot-ssm/SlackWebhookURL
+
+  LoggingLevel:
+    Type: String
+    AllowedValues:
+      - INFO
+      - DEBUG
+    Default: INFO
+
+Globals:
+  Function:
+    Timeout: 5
+
+Resources:
+
+  RevokeSessionLambda:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/revoke_session/
+      Handler: revoke_session.lambda_handler
+      Runtime: python3.8
+      Description: Function to revoke a ssm session 
+      Environment:
+        Variables:
+          LOGGING_LEVEL: !Ref LoggingLevel
+          SLACK_WEBHOOK_PARAM: !Ref SlackWebhookUrlParam
+      Events:
+        Revoke:
+          Type: Api
+          Properties:
+            Path: /revoke
+            Method: POST
+      Policies:
+        - AWSLambdaExecute
+        - Version: '2012-10-17'
+          Statement:
+            - Sid: LambdaAssume
+              Effect: Allow
+              Resource: '*'
+              Action:
+                - sts:AssumeRole
+            - Sid: SSMParamAccess
+              Effect: Allow
+              Resource: !Sub arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter${SlackWebhookUrlParam}
+              Action:
+                - ssm:GetParameter 
+                - ssm:GetParameters
+                - ssm:GetParametersByPath
+            - Sid: RevokeAccess
+              Effect: Allow
+              Resource: '*'
+              Action:
+                - ssm:TerminateSession
+                - ssm:DescribeSessions
+               
+  AlertSlackFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/alert_slack/
+      Handler: alert_slack.lambda_handler
+      Runtime: python3.8
+      Description: Function to alert slack
+      Environment:
+        Variables:
+          LOGGING_LEVEL: !Ref LoggingLevel
+          SLACK_WEBHOOK_PARAM: !Ref SlackWebhookUrlParam
+      Policies:
+        - AWSLambdaExecute
+        - Version: '2012-10-17'
+          Statement:
+            - Sid: LambdaAssume
+              Effect: Allow
+              Resource: '*'
+              Action:
+                - sts:AssumeRole
+            - Sid: SSMParamAccess
+              Effect: Allow
+              Resource: !Sub arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter${SlackWebhookUrlParam}
+              Action:
+                - ssm:GetParameter 
+                - ssm:GetParameters
+                - ssm:GetParametersByPath
+  
+  StartSessionRule:           
+    Type: AWS::Events::Rule
+    Properties: 
+      Description: "Watch for start session api"
+      EventPattern: { "source": ["aws.ssm"], "detail-type": ["AWS API Call via CloudTrail"],"detail": {"eventSource": ["ssm.amazonaws.com"],"eventName": ["StartSession"]}}
+      Name: StartSessionRule
+      State: ENABLED
+      Targets: 
+        - Id: 'LambdaTarget'
+          Arn: !GetAtt AlertSlackFunction.Arn
+  
+  PermissionForEventsToInvokeLambda: 
+    Type: AWS::Lambda::Permission
+    Properties: 
+      FunctionName: !Ref AlertSlackFunction
+      Action: "lambda:InvokeFunction"
+      Principal: "events.amazonaws.com"
+      SourceArn: !GetAtt StartSessionRule.Arn
+
+Outputs:
+  RevokeSessionApi:
+    Description: "API Gateway endpoint URL for Prod stage"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/revoke/"
+  RevokeSessionFunction:
+    Description: "RevokeSession Function ARN"
+    Value: !GetAtt RevokeSessionLambda.Arn
+  AlertSlackFunction:
+    Description: "AlertSlack Function ARN"
+    Value: !GetAtt AlertSlackFunction.Arn

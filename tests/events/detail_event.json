@@ -1,0 +1,54 @@
+{
+  "version": "0",
+  "id": "56df71a5-5044-0499-9867-488a1ca52cf4",
+  "detail-type": "AWS API Call via CloudTrail",
+  "source": "aws.ssm",
+  "account": "459850734427",
+  "time": "2021-01-31T02:31:47Z",
+  "region": "us-east-1",
+  "resources": [],
+  "detail": {
+    "eventVersion": "1.08",
+    "userIdentity": {
+      "type": "AssumedRole",
+      "principalId": "AROAIQ6OLWNLBIR3T37JM:jojithom-Isengard",
+      "arn": "arn:aws:sts::459850734427:assumed-role/Admin/jojithom-Isengard",
+      "accountId": "459850734427",
+      "accessKeyId": "ASIAWWEJ5LNN6GCSI342",
+      "sessionContext": {
+        "sessionIssuer": {
+          "type": "Role",
+          "principalId": "AROAIQ6OLWNLBIR3T37JM",
+          "arn": "arn:aws:iam::459850734427:role/Admin",
+          "accountId": "459850734427",
+          "userName": "Admin"
+        },
+        "webIdFederationData": {},
+        "attributes": {
+          "mfaAuthenticated": "false",
+          "creationDate": "2021-01-31T02:23:51Z"
+        }
+      }
+    },
+    "eventTime": "2021-01-31T02:31:47Z",
+    "eventSource": "ssm.amazonaws.com",
+    "eventName": "StartSession",
+    "awsRegion": "us-east-1",
+    "sourceIPAddress": "72.21.198.64",
+    "userAgent": "aws-internal/3 aws-sdk-java/1.11.937 Linux/4.9.230-0.1.ac.223.84.332.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.275-b01 java/1.8.0_275 vendor/Oracle_Corporation",
+    "requestParameters": {
+      "target": "i-023ad911b5d49dece"
+    },
+    "responseElements": {
+      "sessionId": "jojithom-Isengard-08ea7d78b1fd0d119",
+      "tokenValue": "Value hidden due to security reasons.",
+      "streamUrl": "wss://ssmmessages.us-east-1.amazonaws.com/v1/data-channel/jojithom-Isengard-08ea7d78b1fd0d119?role=publish_subscribe"
+    },
+    "requestID": "fa579183-dd4c-4702-804f-140b2aa7014a",
+    "eventID": "8217f18e-a892-42b6-91c8-1d42b571d440",
+    "readOnly": false,
+    "eventType": "AwsApiCall",
+    "managementEvent": true,
+    "eventCategory": "Management"
+  }
+}
