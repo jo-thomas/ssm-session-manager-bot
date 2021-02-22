@@ -93,7 +93,7 @@
         "extendedRequestId": "aADdiE4vIAMFlJw=",
         "requestTime": "31/Jan/2021:06:21:10 +0000",
         "path": "/Prod/revoke",
-        "accountId": "459850734427",
+        "accountId": "123456789012",
         "protocol": "HTTP/1.1",
         "stage": "Prod",
         "domainPrefix": "gepknvj80g",

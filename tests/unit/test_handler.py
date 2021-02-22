@@ -11,7 +11,6 @@ def apigw_event():
     """ Generates API GW Event"""
 
     return {
-        "body": "token=1pHGkEVLZHecqtFODz7XG1XR&team_id=T01LL40M42Y&team_domain=thomas-workspacehq&channel_id=G01LAS5F405&channel_name=privategroup&user_id=U01LSHN8MJ5&user_name=thomasjoji91&command=%2Frevoke&text=test&api_app_id=A01LDUW3L02&is_enterprise_install=false&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT01LL40M42Y%2F1692376746133%2FztydsYP4DEUn0fahPyGOXPcB&trigger_id=1719305728704.1700136718100.b36aeb6d751d157cd766e078384cc051",
         "resource": "/revoke",
         "path": "/revoke",
         "httpMethod": "POST",
@@ -106,7 +105,7 @@ def apigw_event():
             "extendedRequestId": "aADdiE4vIAMFlJw=",
             "requestTime": "31/Jan/2021:06:21:10 +0000",
             "path": "/Prod/revoke",
-            "accountId": "459850734427",
+            "accountId": "123456789012",
             "protocol": "HTTP/1.1",
             "stage": "Prod",
             "domainPrefix": "gepknvj80g",
@@ -129,6 +128,7 @@ def apigw_event():
             "domainName": "gepknvj80g.execute-api.us-east-1.amazonaws.com",
             "apiId": "gepknvj80g"
         },
+        "body": "token=1pHGkEVLZHecqtFODz7XG1XR&team_id=T01LL40M42Y&team_domain=thomas-workspacehq&channel_id=G01LAS5F405&channel_name=privategroup&user_id=U01LSHN8MJ5&user_name=thomasjoji91&command=%2Frevoke&text=test&api_app_id=A01LDUW3L02&is_enterprise_install=false&response_url=https%3A%2F%2Fhooks.slack.com%2Fcommands%2FT01LL40M42Y%2F1692376746133%2FztydsYP4DEUn0fahPyGOXPcB&trigger_id=1719305728704.1700136718100.b36aeb6d751d157cd766e078384cc051",
         "isBase64Encoded": "False"
     }
 
@@ -141,7 +141,7 @@ def eventbridge_event():
         "id": "56df71a5-5044-0499-9867-488a1ca52cf4",
         "detail-type": "AWS API Call via CloudTrail",
         "source": "aws.ssm",
-        "account": "459850734427",
+        "account": "123456789012",
         "time": "2021-01-31T02:31:47Z",
         "region": "us-east-1",
         "resources": [],
@@ -149,16 +149,16 @@ def eventbridge_event():
             "eventVersion": "1.08",
             "userIdentity": {
             "type": "AssumedRole",
-            "principalId": "AROAIQ6OLWNLBIR3T37JM:jojithom-Isengard",
-            "arn": "arn:aws:sts::459850734427:assumed-role/Admin/jojithom-Isengard",
-            "accountId": "459850734427",
+            "principalId": "AROAIQ6OLWNLBIR3TTEGG:jojithom",
+            "arn": "arn:aws:sts::123456789012:assumed-role/Admin/jojithom",
+            "accountId": "123456789012",
             "accessKeyId": "ASIAWWEJ5LNN6GCSI342",
             "sessionContext": {
                 "sessionIssuer": {
                 "type": "Role",
-                "principalId": "AROAIQ6OLWNLBIR3T37JM",
-                "arn": "arn:aws:iam::459850734427:role/Admin",
-                "accountId": "459850734427",
+                "principalId": "AROAIQ6OLWNLBIR3TABCD",
+                "arn": "arn:aws:iam::123456789012:role/Admin",
+                "accountId": "123456789012",
                 "userName": "Admin"
                 },
                 "webIdFederationData": {},
@@ -178,9 +178,9 @@ def eventbridge_event():
             "target": "i-023ad911b5d49dece"
             },
             "responseElements": {
-            "sessionId": "jojithom-Isengard-08ea7d78b1fd0d119",
+            "sessionId": "jojithom-I-08ea7d78b1fd0d119",
             "tokenValue": "Value hidden due to security reasons.",
-            "streamUrl": "wss://ssmmessages.us-east-1.amazonaws.com/v1/data-channel/jojithom-Isengard-08ea7d78b1fd0d119?role=publish_subscribe"
+            "streamUrl": "wss://ssmmessages.us-east-1.amazonaws.com/v1/data-channel/jojithom-I-08ea7d78b1fd0d119?role=publish_subscribe"
             },
             "requestID": "fa579183-dd4c-4702-804f-140b2aa7014a",
             "eventID": "8217f18e-a892-42b6-91c8-1d42b571d440",
